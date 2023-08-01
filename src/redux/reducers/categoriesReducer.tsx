@@ -1,1 +1,35 @@
-import { useReducer } from "react";
+import { Category } from "../../types/Category";
+import { ADD_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE } from "../actions/types";
+
+const initialState: Category[] = [
+    {
+        name: "Task",
+        active: 3,
+        archived: 0,
+    },
+    {
+        name: "Random Thought",
+        active: 1,
+        archived: 1,
+    },
+    {
+        name: "Idea",
+        active: 2,
+        archived: 0,
+    },
+];
+
+const categoriesReducer = (state = initialState, action: any) => {
+    switch (action.type) {
+        case ADD_NOTE:
+            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, active: category.active + 1 } : category));
+        case ARCHIVE_NOTE:
+            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, archived: category.archived + 1, active: category.active - 1 } : category));
+        case UNARCHIVE_NOTE:
+            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, active: category.active + 1, archived: category.archived - 1 } : category));
+        default:
+            return state;
+    }
+}
+
+export default categoriesReducer;

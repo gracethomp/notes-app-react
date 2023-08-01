@@ -16,12 +16,12 @@ export const removeNote = (noteId: string) => ({
     payload: noteId,
 });
 
-export const archiveNote = (noteId: string) => ({
+export const archiveNote = (note: Note) => ({
     type: ARCHIVE_NOTE,
-    payload: noteId,
+    payload: note,
 });
 
-export const unarchiveNote = (noteId: string) => ({
+export const unarchiveNote = (note: Note) => ({
     type: UNARCHIVE_NOTE,
-    payload: noteId,
+    payload: note,
 });
