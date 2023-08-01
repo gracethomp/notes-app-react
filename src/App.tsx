@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
+import ActionGroup from './components/buttons/ActionsGroup';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <ActionGroup/>
   );
 }
 
