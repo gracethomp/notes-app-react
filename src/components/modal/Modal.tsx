@@ -15,7 +15,7 @@ interface ModalProps {
 }
 
 export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action }: ModalProps) {
-    const [noteForm, setNoteForm] = useState<Note>(
+    const [noteForm, setNoteForm] = useState<Note>( note ? note :
         {
             id: 111,
             name: '',
@@ -28,7 +28,7 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
     );
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
 
-    const addNote = () => {
+    const performAction = () => {
         if (noteForm.name === '' || noteForm.noteContent === '') {
             setIsWarnVisible(true);
         } else {
@@ -57,20 +57,20 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
                     <p>{modalText}</p>
                     {hasForm &&
                         <>
-                            <input type="text" placeholder="Note Name" value={note?.name} className="form-control" onChange={handleInputNameChange} />
+                            <input type="text" placeholder="Note Name" value={noteForm?.name} className="form-control" onChange={handleInputNameChange} />
                             <select className="form-select" aria-label="Default select example" onChange={handleCategorySelectChange}>
                                 <option value="Task">Task</option>
                                 <option value="Random Thought">Random Thought</option>
                                 <option value="Idea">Idea</option>
                             </select>
-                            <textarea className="form-control" placeholder="Content" value={note?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
+                            <textarea className="form-control" placeholder="Content" value={noteForm?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
                         </>}
                     {isWarnVisible &&
                         <p>Fill all fields!</p>
                     }
                 </div>
                 <div className="modal-actions">
-                    <AcceptButton onClick={() => addNote()} text={acceptButtonText} />
+                    <AcceptButton onClick={() => performAction()} text={acceptButtonText} />
                     <CancelButton onClick={() => handleModalClose()} />
                 </div>
             </div>
