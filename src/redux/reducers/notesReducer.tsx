@@ -1,5 +1,5 @@
 import { Note } from '../../types/Note';
-import { getCurrentTime } from '../../utils/dateUtil';
+import { getCurrentTime, getDatesFromString } from '../../utils/dateUtil';
 import { ADD_NOTE, EDIT_NOTE, REMOVE_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE } from "../actions/types";
 
 
@@ -74,9 +74,9 @@ const initialState: Note[] = [
 const notesReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_NOTE:
-            return [...state, { ...action.payload, timeOfCreation: getCurrentTime() }];
+            return [...state, { ...action.payload, timeOfCreation: getCurrentTime(), datesMentioned: getDatesFromString(action.payload.noteContent) }];
         case EDIT_NOTE:
-            return state.map((note) => (note.id === action.payload.id ? action.payload : note));
+            return state.map((note) => (note.id === action.payload.id ? { ...action.payload, datesMentioned: getDatesFromString(action.payload.noteContent) } : note));
         case REMOVE_NOTE:
             return state.filter((note) => note.id !== action.payload);
         case ARCHIVE_NOTE:
