@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Table from "../components/table/Table";
 import { Note } from "../types/Note";
 import addIcon from "../assets/addNote.svg"
@@ -6,6 +6,7 @@ import Header from "../layout/Header";
 import { Category } from "../types/Category";
 import { useState } from "react";
 import Modal from "../components/modal/Modal";
+import { ADD_NOTE } from "../redux/actions/types";
 
 interface RootState {
     notes: Note[],
@@ -32,14 +33,19 @@ export default function MainPage() {
         setHasForm(true);
         setModalVisible(true);
     }
-    
+
     return (
         <>
             <Header />
             <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notes} hasActions={true} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
-                <Modal modalTitle={modalTitle} modalText={modalText} acceptButtonText={acceptButtonText} hasForm={hasForm} handleModalClose={() => setModalVisible(false)} />
+                <Modal modalTitle={modalTitle}
+                    modalText={modalText}
+                    acceptButtonText={acceptButtonText}
+                    hasForm={hasForm}
+                    handleModalClose={() => setModalVisible(false)}
+                />
             }
         </>
     )
