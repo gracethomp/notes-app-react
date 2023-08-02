@@ -1,4 +1,4 @@
-import { ArchiveIcon } from "../utils/icons";
+import archive from "../img/archive.svg"
 
 export default function Header() {
     return (
@@ -10,7 +10,7 @@ export default function Header() {
                             <li className="active-notes-option"><a href="/" className="nav-link px-2 link-secondary">My Notes</a>
                             </li>
                             <li className="archived-notes-option"><a href="/" className="nav-link px-2 link-body-emphasis">Archive
-                                <ArchiveIcon />
+                                <img src={archive} alt="archive note icon" />
                             </a>
                             </li>
                         </ul>

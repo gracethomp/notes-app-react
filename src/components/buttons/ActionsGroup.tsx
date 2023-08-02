@@ -1,13 +1,15 @@
 import React from "react";
-
-import { ArchiveIcon, PenIcon, TrashIcon } from "../../utils/icons";
+import trash from "../../img/trash.svg"
+import archive from "../../img/archive.svg"
+import pen from "../../img/pen.svg"
+import TableCell from "../table/TableCell";
 
 export default function ActionGroup() {
     return (
         <>
-            <td><ArchiveIcon /></td>
-            <td><PenIcon /></td>
-            <td><TrashIcon /></td>
+            <TableCell content={<img src={archive} alt="archive note icon"/>}/>
+            <TableCell content={<img src={pen} alt="pen note icon"/>}/>
+            <TableCell content={<img src={trash} alt="trash note icon"/>}/>
         </>
     )
 }
