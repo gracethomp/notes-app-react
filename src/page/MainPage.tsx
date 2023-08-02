@@ -14,18 +14,32 @@ interface RootState {
 
 export default function MainPage() {
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
-    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <img src={addIcon} alt="add icon" onClick={() => setModalVisible(true)} />, ""];
+    const [modalTitle, setModalTitle] = useState<string>('');
+    const [modalText, setModalText] = useState<string>('');
+    const [acceptButtonText, setAcceptButtonText] = useState<string>('');
+    const [hasForm, setHasForm] = useState<boolean>(false);
+
+    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <img src={addIcon} alt="add icon" onClick={() => handleAddActionClick()} />, ""];
     const notes = useSelector((state: RootState) => state.notes);
 
     const categoryHeaderCells: any[] = ["Icon", "Note Category", "Active", "Archived"];
     const categories = useSelector((state: RootState) => state.categories);
+
+    const handleAddActionClick = () => {
+        setModalTitle("Add Note");
+        setModalText("Fill all fields to create new note");
+        setAcceptButtonText("Create");
+        setHasForm(true);
+        setModalVisible(true);
+    }
+    
     return (
         <>
             <Header />
             <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notes} hasActions={true} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
-                <Modal modalTitle="" modalText="" acceptButtonText="" hasForm={false} handleModalClose={() => setModalVisible(false)}/>
+                <Modal modalTitle={modalTitle} modalText={modalText} acceptButtonText={acceptButtonText} hasForm={hasForm} handleModalClose={() => setModalVisible(false)} />
             }
         </>
     )

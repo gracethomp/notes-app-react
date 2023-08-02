@@ -14,7 +14,7 @@ interface ModalProps {
 }
 
 export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose }: ModalProps) {
-    const  [noteForm, setNoteForm] = useState<Note | undefined>(note);
+    const  [noteForm, setNoteForm] = useState<Note>();
     return (
         <div className="modal" id="myModal">
             <div className="modal-content">
