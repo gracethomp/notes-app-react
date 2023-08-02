@@ -78,7 +78,7 @@ const notesReducer = (state = initialState, action: any) => {
         case EDIT_NOTE:
             return state.map((note) => (note.id === action.payload.id ? { ...action.payload, datesMentioned: getDatesFromString(action.payload.noteContent) } : note));
         case REMOVE_NOTE:
-            return state.filter((note) => note.id !== action.payload);
+            return state.filter((note) => note.id !== action.payload.id);
         case ARCHIVE_NOTE:
             return state.map((note) => (note.id === action.payload.id ? { ...note, isArchived: true } : note));
         case UNARCHIVE_NOTE:

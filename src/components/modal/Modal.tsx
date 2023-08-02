@@ -11,13 +11,14 @@ interface ModalProps {
     note?: Note,
     hasForm: boolean,
     handleModalClose: () => void,
-    action: (note: Note) => void
+    action: (note: Note) => void,
+    id: number
 }
 
-export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action }: ModalProps) {
+export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action, id }: ModalProps) {
     const [noteForm, setNoteForm] = useState<Note>( note ? note :
         {
-            id: 111,
+            id: id,
             name: '',
             timeOfCreation: '',
             category: 'Task',
@@ -29,7 +30,7 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
 
     const performAction = () => {
-        if (noteForm.name === '' || noteForm.noteContent === '') {
+        if (hasForm && (noteForm.name === '' || noteForm.noteContent === '')) {
             setIsWarnVisible(true);
         } else {
             action(noteForm);

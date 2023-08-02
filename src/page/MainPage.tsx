@@ -14,6 +14,7 @@ interface RootState {
 }
 
 export default function MainPage() {
+    const [id, setId] = useState<number>(8);
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
     const [showArchivedNotes, setShowArchivedNotes] = useState<boolean>(false);
 
@@ -30,7 +31,7 @@ export default function MainPage() {
     return (
         <>
             <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} />
-            <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} />
+            <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} showArchivedNotes={showArchivedNotes}/>
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
                 <Modal modalTitle="Add Note"
@@ -38,7 +39,11 @@ export default function MainPage() {
                     acceptButtonText="Create"
                     hasForm={true}
                     handleModalClose={() => setModalVisible(false)}
-                    action={(note:Note) => dispatch(addNote(note))}
+                    action={(note:Note) => {
+                        dispatch(addNote(note));
+                        setId(id + 1);
+                    }}
+                    id={id}
                 />
             }
         </>
