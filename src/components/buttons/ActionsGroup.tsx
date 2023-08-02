@@ -1,7 +1,6 @@
-import React from "react";
-import trash from "../../img/trash.svg"
-import archive from "../../img/archive.svg"
-import pen from "../../img/pen.svg"
+import trash from "../../assets/trash.svg"
+import archive from "../../assets/archive.svg"
+import pen from "../../assets/pen.svg"
 import TableCell from "../table/TableCell";
 
 export default function ActionGroup() {

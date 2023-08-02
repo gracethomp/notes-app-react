@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Table from "../components/table/Table";
 import { Note } from "../types/Note";
-import { AddNoteIcon } from "../utils/icons";
+import addIcon from "../assets/addNote.svg"
 import Header from "../layout/Header";
 import { Category } from "../types/Category";
 
@@ -11,7 +11,7 @@ interface RootState {
 }
 
 export default function MainPage() {
-    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <AddNoteIcon />, ""];
+    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <img src={addIcon} alt="add icon"/>, ""];
     const notes = useSelector((state: RootState) => state.notes);
 
     const categoryHeaderCells: any[] =["Icon", "Note Category", "Active", "Archived"];

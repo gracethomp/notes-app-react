@@ -1,4 +1,4 @@
-import archive from "../img/archive.svg"
+import archive from "../assets/archive.svg"
 
 export default function Header() {
     return (
