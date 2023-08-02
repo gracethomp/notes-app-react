@@ -2,7 +2,7 @@ export interface Note {
     id: number,
     name: string,
     timeOfCreation: string,
-    noteCategory: string,
+    category: string,
     noteContent: string,
     datesMentioned: string[],
     archived: boolean,

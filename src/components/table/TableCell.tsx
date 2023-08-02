@@ -1,9 +1,15 @@
+import { ReactNode } from 'react';
+
 interface TableCellProps {
-    text : string;
+    content : string | ReactNode;
 }
 
-export default function TableCell ({text}:TableCellProps) {
+export default function TableCell ({content}:TableCellProps) {
     return (
-        <td>{text}</td>
+        <td>{typeof content === 'string' ? (
+            <p>{content}</p>
+          ) : (
+            content
+          )}</td>
     )
 }

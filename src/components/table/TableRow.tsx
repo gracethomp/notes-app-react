@@ -1,25 +1,23 @@
+import { TaskIcon } from "../../utils/icons";
 import ActionGroup from "../buttons/ActionsGroup";
 import TableCell from "./TableCell";
 
 interface TableRowProps {
-    index: number,
+    item: any,
+    id: any,
     hasAction: boolean
 }
 
-export default function TableRow({ index, hasAction }: TableRowProps) {
+export default function TableRow({ item, id, hasAction }: TableRowProps) {
     return (
         <>
-            <tr key={index}>
-                
+            <tr key={id}>
+                {item.category && <TableCell content={<TaskIcon/>}/>}
+                {Object.keys(item).map((key) => (
+                    (key !== "id" && key !== "archived") && <TableCell content={item[key]} />
+                ))}
+                {hasAction && <ActionGroup />}
             </tr>
         </>
     );
 }
-// <tr key={data.id}>
-// <TableCell text={data.name} />
-// <TableCell text={data.timeOfCreation} />
-// <TableCell text={data.noteCategory} />
-// <TableCell text={data.noteContent} />
-// <TableCell text={data.datesMentioned.join(", ")} />
-// <ActionGroup />
-// </tr>}

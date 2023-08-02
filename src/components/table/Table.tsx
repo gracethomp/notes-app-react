@@ -1,14 +1,15 @@
-import { Note } from "../../types/Note"
+import ActionGroup from "../buttons/ActionsGroup"
 import TableHeader from "./TableHeader"
 import TableRow from "./TableRow"
 
 interface TableProps {
     tableTitle: string,
     headerCells: string[],
-    data: any[]
+    data: any[],
+    hasActions: boolean
 }
 
-export default function Table({ tableTitle, headerCells, data }: TableProps) {
+export default function Table({ tableTitle, headerCells, data, hasActions }: TableProps) {
     return (
         <div className="table-section">
             <h2>{tableTitle}</h2>
@@ -16,11 +17,7 @@ export default function Table({ tableTitle, headerCells, data }: TableProps) {
                 <TableHeader headerCells={headerCells} />
                 <tbody>
                     {data.map((item) => (
-                        <tr>
-                            {Object.keys(item).map((key) => (
-                                <td key={key}>{key !== "id" ? item[key] : ""}</td>
-                            ))}
-                        </tr>
+                        <TableRow item={item} id={item["id"]} hasAction={hasActions}/>
                     ))}
                 </tbody>
             </table>
