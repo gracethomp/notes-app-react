@@ -1,11 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Note } from "../../types/Note"
-import AcceptButton from "../buttons/AcceptButton"
-import CancelButton from "../buttons/CancelButton"
-import Form from "./Form"
-import { ADD_NOTE } from '../../redux/actions/types';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { getCurrentTime } from '../../utils/dateUtil';
+import { Note } from "../../types/Note";
+import AcceptButton from "../buttons/AcceptButton";
+import CancelButton from "../buttons/CancelButton";
+import Form from "./Form";
 
 interface ModalProps {
     modalTitle: string,
@@ -13,11 +10,11 @@ interface ModalProps {
     acceptButtonText: string,
     note?: Note,
     hasForm: boolean,
-    handleModalClose: () => void
+    handleModalClose: () => void,
+    action: (note: Note) => void
 }
 
-export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose }: ModalProps) {
-    const dispatch = useDispatch();
+export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action }: ModalProps) {
     const [noteForm, setNoteForm] = useState<Note>(
         {
             id: 111,
@@ -25,17 +22,17 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
             timeOfCreation: '',
             category: 'Task',
             noteContent: '',
-            datesMentioned: [],
+            datesMentioned: '',
             isArchived: false,
         }
     );
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
 
-    const addNote = (note: Note) => {
+    const addNote = () => {
         if (noteForm.name === '' || noteForm.noteContent === '') {
             setIsWarnVisible(true);
         } else {
-            dispatch({ type: ADD_NOTE, payload: {...note, timeOfCreation: getCurrentTime()}});
+            action(noteForm);
             handleModalClose();
         }
     }
@@ -73,7 +70,7 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
                     }
                 </div>
                 <div className="modal-actions">
-                    <AcceptButton onClick={() => addNote(noteForm)} text={acceptButtonText} />
+                    <AcceptButton onClick={() => addNote()} text={acceptButtonText} />
                     <CancelButton onClick={() => handleModalClose()} />
                 </div>
             </div>

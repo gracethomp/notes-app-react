@@ -30,7 +30,7 @@ svg {
     display: inline;
 }
 
-.action {
+.action, .nav-link {
     cursor: pointer;
 }
 

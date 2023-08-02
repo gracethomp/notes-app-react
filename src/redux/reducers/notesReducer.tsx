@@ -1,4 +1,5 @@
 import { Note } from '../../types/Note';
+import { getCurrentTime } from '../../utils/dateUtil';
 import { ADD_NOTE, EDIT_NOTE, REMOVE_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE } from "../actions/types";
 
 
@@ -9,7 +10,7 @@ const initialState: Note[] = [
         timeOfCreation: "April 20, 2021, 12:00",
         category: "Task",
         noteContent: "Tomatoes, Bread",
-        datesMentioned: [],
+        datesMentioned: "",
         isArchived: false,
     },
     {
@@ -19,7 +20,7 @@ const initialState: Note[] = [
         category: "Random Thought",
         noteContent:
             "Life's journey is an unpredictable dance, where the steps we take shape the music we leave behind.",
-        datesMentioned: [],
+        datesMentioned: "",
         isArchived: true,
     },
     {
@@ -28,7 +29,7 @@ const initialState: Note[] = [
         timeOfCreation: "May 5, 2021, 15:36",
         category: "Idea",
         noteContent: "Implement new feature (3/5/2021, 5/5/2021)",
-        datesMentioned: ["3/5/2021", "5/5/2021"],
+        datesMentioned: "3/5/2021, 5/5/2021",
         isArchived: false,
     },
     {
@@ -37,7 +38,7 @@ const initialState: Note[] = [
         timeOfCreation: "May 7, 2021, 17:54",
         category: "Random Thought",
         noteContent: "Had an interesting dream last night",
-        datesMentioned: [],
+        datesMentioned: "",
         isArchived: false,
     },
     {
@@ -47,7 +48,7 @@ const initialState: Note[] = [
         category: "Task",
         noteContent:
             "Grace has a birthday on 17/05/2021. Don't forget to buy a gift.",
-        datesMentioned: ["17/05/2021"],
+        datesMentioned: "17/05/2021",
         isArchived: false,
     },
     {
@@ -56,7 +57,7 @@ const initialState: Note[] = [
         timeOfCreation: "May 17, 2021, 3:25",
         category: "Task",
         noteContent: "Plan a weekend trip",
-        datesMentioned: [],
+        datesMentioned: "",
         isArchived: false,
     },
     {
@@ -65,7 +66,7 @@ const initialState: Note[] = [
         timeOfCreation: "July 21, 2021, 20:45",
         category: "Idea",
         noteContent: "Idea for a new project: Create a recipe sharing app",
-        datesMentioned: [],
+        datesMentioned: "",
         isArchived: false,
     }
 ];
@@ -73,7 +74,7 @@ const initialState: Note[] = [
 const notesReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_NOTE:
-            return [...state, action.payload];
+            return [...state, { ...action.payload, timeOfCreation: getCurrentTime() }];
         case EDIT_NOTE:
             return state.map((note) => (note.id === action.payload.id ? action.payload : note));
         case REMOVE_NOTE:
