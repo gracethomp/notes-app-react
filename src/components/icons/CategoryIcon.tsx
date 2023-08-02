@@ -1,6 +1,6 @@
-import taskIcon from "../assets/task.svg"
-import randomThoughtIcon from "../assets/randomThought.svg"
-import ideaIcon from "../assets/idea.svg"
+import taskIcon from "../../assets/task.svg"
+import randomThoughtIcon from "../../assets/randomThought.svg"
+import ideaIcon from "../../assets/idea.svg"
 
 interface CategoryIconProps {
     category: string,

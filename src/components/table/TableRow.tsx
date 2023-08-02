@@ -1,4 +1,4 @@
-import CategoryIcon from "../CategoryIcon";
+import CategoryIcon from "../icons/CategoryIcon";
 import ActionGroup from "../buttons/ActionsGroup";
 import TableCell from "./TableCell";
 
