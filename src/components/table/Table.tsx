@@ -1,22 +1,26 @@
+import { Note } from "../../types/Note"
 import TableHeader from "./TableHeader"
 import TableRow from "./TableRow"
 
-interface TableProps<T> {
+interface TableProps {
     tableTitle: string,
     headerCells: string[],
-    data: T[],
-    columns: (keyof T)[]
+    data: any[]
 }
 
-export default function Table<T>({ tableTitle, headerCells, data, columns }: TableProps<T>) {
+export default function Table({ tableTitle, headerCells, data }: TableProps) {
     return (
         <div className="table-section">
             <h2>{tableTitle}</h2>
             <table className="table">
                 <TableHeader headerCells={headerCells} />
                 <tbody>
-                    {data.map((item, index) => (
-                        <TableRow data={item} index={index} columns={columns} hasAction={true} />
+                    {data.map((item) => (
+                        <tr>
+                            {Object.keys(item).map((key) => (
+                                <td key={key}>{key !== "id" ? item[key] : ""}</td>
+                            ))}
+                        </tr>
                     ))}
                 </tbody>
             </table>

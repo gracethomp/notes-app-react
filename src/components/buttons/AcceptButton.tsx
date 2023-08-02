@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function AcceptButton(text: string) {
+interface AcceptButtonProps {
+    text: string,
+}
+
+export default function AcceptButton({text}: AcceptButtonProps) {
     return (
         <button className="btn btn-dark">{text}</button>
     )
