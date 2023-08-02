@@ -5,5 +5,5 @@ export interface Note {
     category: string,
     noteContent: string,
     datesMentioned: string[],
-    archived: boolean,
+    isArchived: boolean,
   }

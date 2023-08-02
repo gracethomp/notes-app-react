@@ -1,33 +1,28 @@
 import { Note } from "../../types/Note"
 import AcceptButton from "../buttons/AcceptButton"
 import CancelButton from "../buttons/CancelButton"
+import Form from "./Form"
 
 interface ModalProps {
     modalTitle: string,
     modalText: string,
     acceptButtonText: string,
-    note: Note
+    note: Note,
+    hasForm: boolean
 }
 
-export default function Modal({ modalTitle, modalText, acceptButtonText, note }: ModalProps) {
+export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm }: ModalProps) {
     return (
         <div className="modal" id="myModal">
             <div className="modal-content">
                 <h3 id="modalTitle">{modalTitle}</h3>
                 <div id="modalContent">
                     <p>{modalText}</p>
-                    {note !== undefined}
-                    <input type="text" placeholder="Note Name" value="" className="form-control" />
-                    <select className="form-select" aria-label="Default select example">
-                        <option value="Task">Task</option>
-                        <option value="Random Thought">Random Thought</option>
-                        <option value="Idea">Idea</option>
-                    </select>
-                    <textarea className="form-control" placeholder="Content" />
+                    {hasForm && <Form note={note} />}
                 </div>
                 <div className="modal-actions">
                     <AcceptButton text={acceptButtonText} />
-                    <CancelButton/>
+                    <CancelButton />
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ export default function TableRow({ item, id, hasAction }: TableRowProps) {
             <tr key={id}>
                 {item.category && <TableCell content={<TaskIcon/>}/>}
                 {Object.keys(item).map((key) => (
-                    (key !== "id" && key !== "archived") && <TableCell content={item[key]} />
+                    (key !== "id" && key !== "isArchived") && <TableCell content={item[key]} />
                 ))}
                 {hasAction && <ActionGroup />}
             </tr>

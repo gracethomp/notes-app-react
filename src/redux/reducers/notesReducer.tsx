@@ -10,7 +10,7 @@ const initialState: Note[] = [
         category: "Task",
         noteContent: "Tomatoes, Bread",
         datesMentioned: [],
-        archived: false,
+        isArchived: false,
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const initialState: Note[] = [
         noteContent:
             "Life's journey is an unpredictable dance, where the steps we take shape the music we leave behind.",
         datesMentioned: [],
-        archived: true,
+        isArchived: true,
     },
     {
         id: 3,
@@ -29,7 +29,7 @@ const initialState: Note[] = [
         category: "Idea",
         noteContent: "Implement new feature (3/5/2021, 5/5/2021)",
         datesMentioned: ["3/5/2021", "5/5/2021"],
-        archived: false,
+        isArchived: false,
     },
     {
         id: 4,
@@ -38,7 +38,7 @@ const initialState: Note[] = [
         category: "Random Thought",
         noteContent: "Had an interesting dream last night",
         datesMentioned: [],
-        archived: false,
+        isArchived: false,
     },
     {
         id: 5,
@@ -48,7 +48,7 @@ const initialState: Note[] = [
         noteContent:
             "Grace has a birthday on 17/05/2021. Don't forget to buy a gift.",
         datesMentioned: ["17/05/2021"],
-        archived: false,
+        isArchived: false,
     },
     {
         id: 6,
@@ -57,7 +57,7 @@ const initialState: Note[] = [
         category: "Task",
         noteContent: "Plan a weekend trip",
         datesMentioned: [],
-        archived: false,
+        isArchived: false,
     },
     {
         id: 7,
@@ -66,7 +66,7 @@ const initialState: Note[] = [
         category: "Idea",
         noteContent: "Idea for a new project: Create a recipe sharing app",
         datesMentioned: [],
-        archived: false,
+        isArchived: false,
     }
 ];
 
@@ -79,9 +79,9 @@ const notesReducer = (state = initialState, action: any) => {
         case REMOVE_NOTE:
             return state.filter((note) => note.id !== action.payload);
         case ARCHIVE_NOTE:
-            return state.map((note) => (note.id === action.payload.id ? { ...note, archived: true } : note));
+            return state.map((note) => (note.id === action.payload.id ? { ...note, isArchived: true } : note));
         case UNARCHIVE_NOTE:
-            return state.map((note) => (note.id === action.payload.id ? { ...note, archived: false } : note));
+            return state.map((note) => (note.id === action.payload.id ? { ...note, isArchived: false } : note));
         default:
             return state;
     }
