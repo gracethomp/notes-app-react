@@ -22,11 +22,11 @@ const initialState: Category[] = [
 const categoriesReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_NOTE:
-            return state.map((category) => (category.category === action.payload.noteCategory ? { ...category, active: category.active + 1 } : category));
+            return state.map((category) => (category.category === action.payload.category ? { ...category, active: category.active + 1 } : category));
         case ARCHIVE_NOTE:
-            return state.map((category) => (category.category === action.payload.noteCategory ? { ...category, archived: category.archived + 1, active: category.active - 1 } : category));
+            return state.map((category) => (category.category === action.payload.category ? { ...category, archived: category.archived + 1, active: category.active - 1 } : category));
         case UNARCHIVE_NOTE:
-            return state.map((category) => (category.category === action.payload.noteCategory ? { ...category, active: category.active + 1, archived: category.archived - 1 } : category));
+            return state.map((category) => (category.category === action.payload.category ? { ...category, active: category.active + 1, archived: category.archived - 1 } : category));
         default:
             return state;
     }

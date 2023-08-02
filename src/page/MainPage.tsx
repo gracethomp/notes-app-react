@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Table from "../components/table/Table";
 import { Note } from "../types/Note";
 import addIcon from "../assets/addNote.svg"
@@ -19,9 +19,12 @@ export default function MainPage() {
     const [modalText, setModalText] = useState<string>('');
     const [acceptButtonText, setAcceptButtonText] = useState<string>('');
     const [hasForm, setHasForm] = useState<boolean>(false);
+    const [showArchivedNotes, setShowArchivedNotes] = useState<boolean>(false);
 
-    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <img src={addIcon} alt="add icon" onClick={() => handleAddActionClick()} />, ""];
+    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <img src={addIcon} alt="add icon" onClick={() => handleAddActionClick()} className="action" />, ""];
     const notes = useSelector((state: RootState) => state.notes);
+
+    const notesToDisplay = notes.filter((note) => note.isArchived === showArchivedNotes);
 
     const categoryHeaderCells: any[] = ["Icon", "Note Category", "Active", "Archived"];
     const categories = useSelector((state: RootState) => state.categories);
@@ -36,8 +39,8 @@ export default function MainPage() {
 
     return (
         <>
-            <Header />
-            <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notes} hasActions={true} />
+            <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} />
+            <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
                 <Modal modalTitle={modalTitle}

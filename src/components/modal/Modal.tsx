@@ -5,6 +5,7 @@ import CancelButton from "../buttons/CancelButton"
 import Form from "./Form"
 import { ADD_NOTE } from '../../redux/actions/types';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { getCurrentTime } from '../../utils/dateUtil';
 
 interface ModalProps {
     modalTitle: string,
@@ -34,7 +35,7 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
         if (noteForm.name === '' || noteForm.noteContent === '') {
             setIsWarnVisible(true);
         } else {
-            dispatch({ type: ADD_NOTE, payload: note });
+            dispatch({ type: ADD_NOTE, payload: {...note, timeOfCreation: getCurrentTime()}});
             handleModalClose();
         }
     }
