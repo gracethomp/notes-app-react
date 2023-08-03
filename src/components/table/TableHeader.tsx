@@ -1,15 +1,15 @@
-import TableHeaderCell from "./TableHeaderCell";
+import { TableHeaderCell } from "./TableHeaderCell";
 
 interface TableHeaderProps {
-    headerCells : string[];
+    headerCells: string[];
 }
 
-export default function TableHeader({headerCells} : TableHeaderProps) {
+export const TableHeader: React.FC<TableHeaderProps> = ({ headerCells }) => {
     return (
         <thead>
             <tr className="table-dark">
-                {headerCells.map( (column) =>
-                    <TableHeaderCell text={column}/>
+                {headerCells.map((column) =>
+                    <TableHeaderCell text={column} />
                 )}
             </tr>
         </thead>

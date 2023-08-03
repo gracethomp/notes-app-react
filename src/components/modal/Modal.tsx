@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Note } from "../../types/Note";
-import AcceptButton from "../buttons/AcceptButton";
-import CancelButton from "../buttons/CancelButton";
-import Form from "./Form";
+import { AcceptButton } from "../buttons/AcceptButton";
+import { CancelButton } from "../buttons/CancelButton";
 
 interface ModalProps {
     modalTitle: string,
@@ -15,8 +14,8 @@ interface ModalProps {
     id: number
 }
 
-export default function Modal({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action, id }: ModalProps) {
-    const [noteForm, setNoteForm] = useState<Note>( note ? note :
+export const Modal: React.FC<ModalProps> = ({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action, id }) => {
+    const [noteForm, setNoteForm] = useState<Note>(note ? note :
         {
             id: id,
             name: '',

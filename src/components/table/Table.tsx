@@ -1,5 +1,7 @@
-import TableHeader from "./TableHeader"
-import TableRow from "./TableRow"
+import React from "react";
+
+import { TableHeader } from "./TableHeader"
+import { TableRow } from "./TableRow"
 
 interface TableProps {
     tableTitle: string,
@@ -9,7 +11,7 @@ interface TableProps {
     showArchivedNotes?: boolean
 }
 
-export default function Table({ tableTitle, headerCells, data, hasActions, showArchivedNotes }: TableProps) {
+export const Table: React.FC<TableProps> = ({ tableTitle, headerCells, data, hasActions, showArchivedNotes }) => {
     return (
         <div className="table-section">
             <h2>{tableTitle}</h2>
@@ -17,7 +19,7 @@ export default function Table({ tableTitle, headerCells, data, hasActions, showA
                 <TableHeader headerCells={headerCells} />
                 <tbody>
                     {data.map((item) => (
-                        <TableRow item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes}/>
+                        <TableRow item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
                     ))}
                 </tbody>
             </table>

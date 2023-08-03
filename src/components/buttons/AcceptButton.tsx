@@ -1,10 +1,14 @@
+import React from 'react';
+
 interface AcceptButtonProps {
-    text: string,
-    onClick: () => void
+    text: string;
+    onClick: () => void;
 }
 
-export default function AcceptButton({text, onClick}: AcceptButtonProps) {
+export const AcceptButton: React.FC<AcceptButtonProps> = ({ text, onClick }) => {
     return (
-        <button className="btn btn-dark" onClick={onClick}>{text}</button>
-    )
-}
+        <button className="btn btn-dark" onClick={onClick}>
+            {text}
+        </button>
+    );
+};

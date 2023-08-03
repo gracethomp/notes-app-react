@@ -1,8 +1,6 @@
-import React from 'react';
-import ActionGroup from './components/buttons/ActionsGroup';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import MainPage from './page/MainPage';
+import { MainPage } from './page/MainPage';
 
 function App() {
   return (

@@ -1,7 +1,9 @@
+import React from "react";
 import trash from "../../assets/trash.svg"
 import archive from "../../assets/archive.svg"
 import pen from "../../assets/pen.svg"
-import TableCell from "../table/TableCell";
+import { TableCell } from "../table/TableCell";
+import { ActionButton } from "./ActionButton";
 
 interface ActionGroupProps {
     handleEditClick: () => void,
@@ -9,12 +11,12 @@ interface ActionGroupProps {
     handleRemoveClick: () => void,
 }
 
-export default function ActionGroup({ handleArchiveClick, handleEditClick, handleRemoveClick }: ActionGroupProps) {
+export const ActionGroup: React.FC<ActionGroupProps> = ({ handleArchiveClick, handleEditClick, handleRemoveClick }) => {
     return (
         <>
-            <TableCell content={<img src={archive} alt="archive note icon" className="action" onClick={handleArchiveClick}/>} />
-            <TableCell content={<img src={pen} alt="pen note icon" className="action" onClick={handleEditClick} />} />
-            <TableCell content={<img src={trash} alt="trash note icon" className="action" onClick={handleRemoveClick}/>} />
+            <TableCell content={<ActionButton icon={archive} alt={"archive"} onClick={handleArchiveClick} />} />
+            <TableCell content={<ActionButton icon={pen} alt={"edit"} onClick={handleEditClick} />} />
+            <TableCell content={<ActionButton icon={trash} alt={"trash"} onClick={handleRemoveClick} />} />
         </>
     )
 }

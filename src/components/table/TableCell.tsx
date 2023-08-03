@@ -4,7 +4,7 @@ interface TableCellProps {
     content: string | ReactNode;
 }
 
-export default function TableCell({ content }: TableCellProps) {
+export const TableCell: React.FC<TableCellProps> = ({ content }) => {
     return (
         <td>{typeof content === 'string' ? (
             <p>{content}</p>

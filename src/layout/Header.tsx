@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface HeaderProps {
     onNoteListClick: () => void,
     onArchiveClick: () => void
 }
 
-export default function Header({ onNoteListClick, onArchiveClick }: HeaderProps) {
+export const Header: React.FC<HeaderProps> = ({ onNoteListClick, onArchiveClick }) => {
     const [isArchiveSelected, setIsArchiveSelected] = useState<boolean>(false);
 
     const handleNotesListClick = () => {
