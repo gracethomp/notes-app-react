@@ -1,5 +1,5 @@
 import { Category } from "../../types/Category";
-import { ADD_NOTE, ARCHIVE_NOTE, EDIT_NOTE, UNARCHIVE_NOTE } from "../actions/types";
+import { DECREMENT_ACTIVE, DECREMENT_ARCHIVED, INCREMENT_ACTIVE, INCREMENT_ARCHIVED } from "../actions/types";
 
 const initialState: Category[] = [
     {
@@ -21,14 +21,14 @@ const initialState: Category[] = [
 
 const categoriesReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case ADD_NOTE:
-            return state.map((category) => (category.category === action.payload.category ? { ...category, active: category.active + 1 } : category));
-        case EDIT_NOTE:
-            return state.map((category) => (category.category === action.payload.category ? { ...category, active: category.active + 1 } : category));
-        case ARCHIVE_NOTE:
-            return state.map((category) => (category.category === action.payload.category ? { ...category, archived: category.archived + 1, active: category.active - 1 } : category));
-        case UNARCHIVE_NOTE:
-            return state.map((category) => (category.category === action.payload.category ? { ...category, active: category.active + 1, archived: category.archived - 1 } : category));
+        case INCREMENT_ACTIVE:
+            return state.map((category) => (category.category === action.payload ? { ...category, active: category.active + 1 } : category));
+        case INCREMENT_ARCHIVED:
+            return state.map((category) => (category.category === action.payload ? { ...category, archived: category.archived + 1 } : category));
+        case DECREMENT_ACTIVE:
+            return state.map((category) => (category.category === action.payload ? { ...category, active: category.active - 1 } : category));
+        case DECREMENT_ARCHIVED:
+            return state.map((category) => (category.category === action.payload ? { ...category, archived: category.archived - 1 } : category));
         default:
             return state;
     }

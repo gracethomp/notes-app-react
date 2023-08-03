@@ -7,6 +7,7 @@ import { Category } from "../types/Category";
 import { useState } from "react";
 import Modal from "../components/modal/Modal";
 import { addNote } from "../redux/actions/notesActions";
+import { incrementActive } from "../redux/actions/categoryActions";
 
 interface RootState {
     notes: Note[],
@@ -41,6 +42,7 @@ export default function MainPage() {
                     handleModalClose={() => setModalVisible(false)}
                     action={(note:Note) => {
                         dispatch(addNote(note));
+                        dispatch(incrementActive(note.category));
                         setId(id + 1);
                     }}
                     id={id}

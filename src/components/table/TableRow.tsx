@@ -5,7 +5,8 @@ import Modal from "../modal/Modal";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Note } from "../../types/Note";
-import { archiveNote, editNote, unarchiveNote } from "../../redux/actions/notesActions";
+import { archiveNote, editNote, removeNote, unarchiveNote } from "../../redux/actions/notesActions";
+import { decrementActive, decrementArchived, incrementActive, incrementArchived } from "../../redux/actions/categoryActions";
 
 interface TableRowProps {
     item: any,
@@ -19,6 +20,31 @@ export default function TableRow({ item, hasAction, showArchivedNotes }: TableRo
     const [isEditModalVisible, setEditModalVisible] = useState<boolean>(false);
     const [isArchiveModalVisible, setArchiveModalVisible] = useState<boolean>(false);
     const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
+
+    const handleArchiveClick = (note: Note) => {
+        if (showArchivedNotes) {
+            dispatch(unarchiveNote(note));
+            dispatch(incrementActive(note.category));
+            dispatch(decrementArchived(note.category));
+        } else {
+            dispatch(archiveNote(note));
+            dispatch(incrementArchived(note.category));
+            dispatch(decrementActive(note.category));
+        }
+    }
+
+    const handleEditClick = (note: Note) => {
+        dispatch(editNote(note));
+        if (note.category !== item.category) {
+            dispatch(showArchivedNotes ? incrementArchived(note.category) : incrementActive(note.category));
+            dispatch(showArchivedNotes ? decrementArchived(item.category) : decrementActive(item.category));
+        }
+    }
+
+    const handleDeleteClick = (note: Note) => {
+        dispatch(removeNote(note));
+        dispatch(showArchivedNotes ? decrementArchived(note.category) : decrementActive(note.category));
+    }
 
     return (
         <>
@@ -41,7 +67,7 @@ export default function TableRow({ item, hasAction, showArchivedNotes }: TableRo
                     hasForm={true}
                     note={item}
                     handleModalClose={() => setEditModalVisible(false)}
-                    action={(note: Note) => dispatch(editNote(note))}
+                    action={(note: Note) => handleEditClick(note)}
                     id={item["id"]}
                 />
             }
@@ -52,7 +78,18 @@ export default function TableRow({ item, hasAction, showArchivedNotes }: TableRo
                     hasForm={false}
                     note={item}
                     handleModalClose={() => setArchiveModalVisible(false)}
-                    action={(note: Note) => dispatch(showArchivedNotes ? unarchiveNote(note) : archiveNote(note))}
+                    action={(note: Note) => handleArchiveClick(note)}
+                    id={item["id"]}
+                />
+            }
+            {isDeleteModalVisible &&
+                <Modal modalTitle="Delete Note"
+                    modalText={"Are you sure you want to delete this node?"}
+                    acceptButtonText="Yes"
+                    hasForm={false}
+                    note={item}
+                    handleModalClose={() => setDeleteModalVisible(false)}
+                    action={(note: Note) => handleDeleteClick(note)}
                     id={item["id"]}
                 />
             }

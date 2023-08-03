@@ -59,7 +59,7 @@ export default function Modal({ modalTitle, modalText, acceptButtonText, note, h
                     {hasForm &&
                         <>
                             <input type="text" placeholder="Note Name" value={noteForm?.name} className="form-control" onChange={handleInputNameChange} />
-                            <select className="form-select" aria-label="Default select example" onChange={handleCategorySelectChange}>
+                            <select className="form-select" aria-label="Default select example" onChange={handleCategorySelectChange} value={noteForm?.category}>
                                 <option value="Task">Task</option>
                                 <option value="Random Thought">Random Thought</option>
                                 <option value="Idea">Idea</option>
