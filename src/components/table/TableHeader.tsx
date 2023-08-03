@@ -1,3 +1,4 @@
+import React from 'react';
 import { TableHeaderCell } from "./TableHeaderCell";
 
 interface TableHeaderProps {

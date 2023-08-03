@@ -1,8 +1,9 @@
+import React, { useState } from "react";
+
 import { CategoryIcon } from "../icons/CategoryIcon";
 import { ActionGroup } from "../buttons/ActionsGroup";
 import { TableCell } from "./TableCell";
 import { Modal } from "../modal/Modal";
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Note } from "../../types/Note";
 import { archiveNote, editNote, removeNote, unarchiveNote } from "../../redux/actions/notesActions";

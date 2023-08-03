@@ -1,10 +1,10 @@
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from "../components/table/Table";
 import { Note } from "../types/Note";
 import addIcon from "../assets/addNote.svg"
 import { Header } from "../layout/Header";
 import { Category } from "../types/Category";
-import React, { useState } from "react";
 import { Modal } from "../components/modal/Modal";
 import { addNote } from "../redux/actions/notesActions";
 import { incrementActive } from "../redux/actions/categoryActions";
