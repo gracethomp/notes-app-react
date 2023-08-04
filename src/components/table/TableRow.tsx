@@ -28,7 +28,9 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
 
     const chooseAction = (currentAction: string) => {
         const lowerCaseAction = currentAction.toLowerCase();
-        if (lowerCaseAction === "archive" || lowerCaseAction === "unarchive") {
+        if (lowerCaseAction === "unarchive") {
+            return (note: Note) => handleUnarchiveNote(note);
+        } else if (lowerCaseAction === "archive") {
             return (note: Note) => handleArchiveNote(note);
         } else if (lowerCaseAction === "edit") {
             return (note: Note) => handleEditNote(note);
@@ -37,16 +39,16 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
         }
     }
 
+    const handleUnarchiveNote = (note: Note) => {
+        dispatch(unarchiveNote(note));
+        dispatch(incrementActive(note.category));
+        dispatch(decrementArchived(note.category));
+    }
+
     const handleArchiveNote = (note: Note) => {
-        if (showArchivedNotes) {
-            dispatch(unarchiveNote(note));
-            dispatch(incrementActive(note.category));
-            dispatch(decrementArchived(note.category));
-        } else {
-            dispatch(archiveNote(note));
-            dispatch(incrementArchived(note.category));
-            dispatch(decrementActive(note.category));
-        }
+        dispatch(archiveNote(note));
+        dispatch(incrementArchived(note.category));
+        dispatch(decrementActive(note.category));
     }
 
     const handleEditNote = (note: Note) => {
@@ -64,7 +66,7 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
 
     return (
         <>
-            <tr>
+            <tr key={item.id}>
                 {item.category && <TableCell content={<CategoryIcon category={item.category} />} />}
                 {Object.keys(item).map((key) => (
                     (key !== "id" && key !== "isArchived") && <TableCell content={item[key]} />

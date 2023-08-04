@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CancelButtonProps {
-    onClick: () => void;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const CancelButton: React.FC<CancelButtonProps> = ({ onClick }) => {

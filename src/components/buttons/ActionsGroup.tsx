@@ -6,17 +6,17 @@ import { TableCell } from "../table/TableCell";
 import { ActionButton } from "./ActionButton";
 
 interface ActionGroupProps {
-    handleEditClick: () => void,
-    handleArchiveClick: () => void,
-    handleRemoveClick: () => void,
+    handleEditClick: React.MouseEventHandler<HTMLImageElement>,
+    handleArchiveClick: React.MouseEventHandler<HTMLImageElement>,
+    handleRemoveClick: React.MouseEventHandler<HTMLImageElement>,
 }
 
 export const ActionGroup: React.FC<ActionGroupProps> = ({ handleArchiveClick, handleEditClick, handleRemoveClick }) => {
     return (
         <>
-            <TableCell content={<ActionButton icon={archive} alt={"archive"} onClick={handleArchiveClick} />} />
-            <TableCell content={<ActionButton icon={pen} alt={"edit"} onClick={handleEditClick} />} />
-            <TableCell content={<ActionButton icon={trash} alt={"trash"} onClick={handleRemoveClick} />} />
+            <TableCell content={<ActionButton icon={archive} alt="archive" onClick={handleArchiveClick} />} />
+            <TableCell content={<ActionButton icon={pen} alt="edit" onClick={handleEditClick} />} />
+            <TableCell content={<ActionButton icon={trash} alt="trash" onClick={handleRemoveClick} />} />
         </>
     )
 }

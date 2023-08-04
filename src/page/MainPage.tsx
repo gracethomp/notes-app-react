@@ -32,7 +32,7 @@ export const MainPage: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <ActionButton icon={addIcon} alt={"add note"} onClick={() => setModalVisible(true)} />, ""];
+    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <ActionButton icon={addIcon} alt={"add"} onClick={() => setModalVisible(true)} />, ""];
     const notes = useSelector((state: RootState) => state.notes);
 
     const notesToDisplay = notes.filter((note) => note.isArchived === showArchivedNotes);

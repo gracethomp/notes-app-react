@@ -9,9 +9,8 @@ interface TableCellProps {
 export const TableCell: React.FC<TableCellProps> = ({ content }) => {
     return (
         <td>{typeof content === 'string' ? (
-            <p>{content}</p>
-        ) : (
-            content
-        )}</td>
+            <p>{content}</p>) :
+            (content)}
+        </td>
     )
 }

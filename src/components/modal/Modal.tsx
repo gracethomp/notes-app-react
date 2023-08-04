@@ -17,7 +17,7 @@ interface ModalProps {
     action: (note: Note) => void,
 }
 
-export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, actionType}) => {
+export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, actionType }) => {
     const modalSettings: ModalSettings = {
         modalTitle: setModalTitle(actionType),
         modalText: setModalText(actionType),
@@ -25,8 +25,6 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     };
     const [noteForm, setNoteForm] = useState<Note>(note);
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
-
-
 
     const performAction = () => {
         if (modalSettings.hasForm && (noteForm.name === '' || noteForm.noteContent === '')) {
@@ -48,7 +46,6 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     const handleContentTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setNoteForm({ ...noteForm, noteContent: e.target.value });
     }
-
 
     return (
         <div className="modal" id="myModal">

@@ -25,15 +25,15 @@ export const Header: React.FC<HeaderProps> = ({ onNoteListClick, onArchiveClick 
                     <nav>
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li className="active-notes-option">
-                                <p className={"nav-link px-2 " + (!isArchiveSelected ? "link-secondary" : "link-body-emphasis")}
+                                <button className={"nav-link px-2 " + (!isArchiveSelected ? "link-secondary" : "link-body-emphasis")}
                                     onClick={() => handleNotesListClick()}>My Notes
-                                </p>
+                                </button>
                             </li>
                             <li className="archived-notes-option">
-                                <p className={"nav-link px-2 " + (isArchiveSelected ? "link-secondary" : "link-body-emphasis")}
+                                <button className={"nav-link px-2 " + (isArchiveSelected ? "link-secondary" : "link-body-emphasis")}
                                     onClick={() => handleArchiveClick()}>
                                     Archive
-                                </p>
+                                </button>
                             </li>
                         </ul>
                     </nav>
