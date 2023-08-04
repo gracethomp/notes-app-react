@@ -1,12 +1,12 @@
-import React from 'react';
-import ActionGroup from './components/buttons/ActionsGroup';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { MainPage } from './page/MainPage';
+import React from 'react';
 
 function App() {
   return (
     <Provider store={store}>
-      <ActionGroup/>
+      <MainPage></MainPage>
     </Provider>
   );
 }

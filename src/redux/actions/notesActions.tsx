@@ -11,9 +11,9 @@ export const editNote = (note: Note) => ({
     payload: note,
 });
 
-export const removeNote = (noteId: string) => ({
+export const removeNote = (note: Note) => ({
     type: REMOVE_NOTE,
-    payload: noteId,
+    payload: note,
 });
 
 export const archiveNote = (note: Note) => ({

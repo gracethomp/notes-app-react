@@ -1,22 +1,25 @@
-import TableHeader from "./TableHeader"
-import TableRow from "./TableRow"
+import React from "react";
 
-interface TableProps<T> {
+import { TableHeader } from "./TableHeader"
+import { TableRow } from "./TableRow"
+
+interface TableProps {
     tableTitle: string,
     headerCells: string[],
-    data: T[],
-    columns: (keyof T)[]
+    data: any[],
+    hasActions: boolean,
+    showArchivedNotes?: boolean
 }
 
-export default function Table<T>({ tableTitle, headerCells, data, columns }: TableProps<T>) {
+export const Table: React.FC<TableProps> = ({ tableTitle, headerCells, data, hasActions, showArchivedNotes }) => {
     return (
         <div className="table-section">
             <h2>{tableTitle}</h2>
             <table className="table">
                 <TableHeader headerCells={headerCells} />
                 <tbody>
-                    {data.map((item, index) => (
-                        <TableRow data={item} index={index} columns={columns} hasAction={true} />
+                    {data.map((item) => (
+                        <TableRow key={item.id} item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
                     ))}
                 </tbody>
             </table>

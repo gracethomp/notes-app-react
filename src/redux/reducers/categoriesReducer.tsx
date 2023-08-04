@@ -1,19 +1,19 @@
 import { Category } from "../../types/Category";
-import { ADD_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE } from "../actions/types";
+import { DECREMENT_ACTIVE, DECREMENT_ARCHIVED, INCREMENT_ACTIVE, INCREMENT_ARCHIVED } from "../actions/types";
 
 const initialState: Category[] = [
     {
-        name: "Task",
+        category: "Task",
         active: 3,
         archived: 0,
     },
     {
-        name: "Random Thought",
+        category: "Random Thought",
         active: 1,
         archived: 1,
     },
     {
-        name: "Idea",
+        category: "Idea",
         active: 2,
         archived: 0,
     },
@@ -21,12 +21,14 @@ const initialState: Category[] = [
 
 const categoriesReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case ADD_NOTE:
-            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, active: category.active + 1 } : category));
-        case ARCHIVE_NOTE:
-            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, archived: category.archived + 1, active: category.active - 1 } : category));
-        case UNARCHIVE_NOTE:
-            return state.map((category) => (category.name === action.payload.noteCategory ? { ...category, active: category.active + 1, archived: category.archived - 1 } : category));
+        case INCREMENT_ACTIVE:
+            return state.map((category) => (category.category === action.payload ? { ...category, active: category.active + 1 } : category));
+        case INCREMENT_ARCHIVED:
+            return state.map((category) => (category.category === action.payload ? { ...category, archived: category.archived + 1 } : category));
+        case DECREMENT_ACTIVE:
+            return state.map((category) => (category.category === action.payload ? { ...category, active: category.active - 1 } : category));
+        case DECREMENT_ARCHIVED:
+            return state.map((category) => (category.category === action.payload ? { ...category, archived: category.archived - 1 } : category));
         default:
             return state;
     }

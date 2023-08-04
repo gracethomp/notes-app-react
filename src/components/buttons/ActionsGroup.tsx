@@ -1,13 +1,22 @@
 import React from "react";
+import trash from "../../assets/trash.svg"
+import archive from "../../assets/archive.svg"
+import pen from "../../assets/pen.svg"
+import { TableCell } from "../table/TableCell";
+import { ActionButton } from "./ActionButton";
 
-import { ArchiveIcon, PenIcon, TrashIcon } from "../../utils/icons";
+interface ActionGroupProps {
+    handleEditClick: React.MouseEventHandler<HTMLImageElement>,
+    handleArchiveClick: React.MouseEventHandler<HTMLImageElement>,
+    handleRemoveClick: React.MouseEventHandler<HTMLImageElement>,
+}
 
-export default function ActionGroup() {
+export const ActionGroup: React.FC<ActionGroupProps> = ({ handleArchiveClick, handleEditClick, handleRemoveClick }) => {
     return (
         <>
-            <td><ArchiveIcon /></td>
-            <td><PenIcon /></td>
-            <td><TrashIcon /></td>
+            <TableCell content={<ActionButton icon={archive} alt="archive" onClick={handleArchiveClick} />} />
+            <TableCell content={<ActionButton icon={pen} alt="edit" onClick={handleEditClick} />} />
+            <TableCell content={<ActionButton icon={trash} alt="trash" onClick={handleRemoveClick} />} />
         </>
     )
 }

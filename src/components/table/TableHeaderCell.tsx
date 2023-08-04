@@ -1,8 +1,10 @@
+import React from "react";
+
 interface TableHeaderCellProps {
-    text : string;
+    text: string;
 }
 
-export default function TableHeaderCell({text} : TableHeaderCellProps) {
+export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({ text }) => {
     return (
         <th scope="col">{text}</th>
     )

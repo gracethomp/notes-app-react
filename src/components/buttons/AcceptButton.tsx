@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react';
 
-export default function AcceptButton(text: string) {
-    return (
-        <button className="btn btn-dark">{text}</button>
-    )
+interface AcceptButtonProps {
+    text: string;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
+
+export const AcceptButton: React.FC<AcceptButtonProps> = ({ text, onClick }) => {
+    return (
+        <button className="btn btn-dark" onClick={onClick}>
+            {text}
+        </button>
+    );
+};
