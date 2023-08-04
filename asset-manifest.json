@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/notes-app-react/static/css/main.37c84109.css",
+    "main.js": "/notes-app-react/static/js/main.86086944.js",
+    "static/js/787.6dea6a4c.chunk.js": "/notes-app-react/static/js/787.6dea6a4c.chunk.js",
+    "index.html": "/notes-app-react/index.html",
+    "static/media/randomThought.svg": "/notes-app-react/static/media/randomThought.a92bc84527812588adfd7f16ff20e9d1.svg",
+    "static/media/trash.svg": "/notes-app-react/static/media/trash.e48019d920dc90840320e78c10a96b5e.svg",
+    "static/media/task.svg": "/notes-app-react/static/media/task.03075257a50b16dff49d383f2d6c8b7e.svg",
+    "static/media/idea.svg": "/notes-app-react/static/media/idea.4be30dd302371de39c83ba5bac584270.svg",
+    "static/media/pen.svg": "/notes-app-react/static/media/pen.5567f86c6000e1f1e196ad7c7f967480.svg",
+    "static/media/addNote.svg": "/notes-app-react/static/media/addNote.315ac4054e1a3bf5d5a8ad02d0baa08e.svg",
+    "static/media/archive.svg": "/notes-app-react/static/media/archive.5cfba16f0069303e71d599d76f8b0da1.svg",
+    "main.37c84109.css.map": "/notes-app-react/static/css/main.37c84109.css.map",
+    "main.86086944.js.map": "/notes-app-react/static/js/main.86086944.js.map",
+    "787.6dea6a4c.chunk.js.map": "/notes-app-react/static/js/787.6dea6a4c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37c84109.css",
+    "static/js/main.86086944.js"
+  ]
+}
