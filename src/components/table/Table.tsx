@@ -19,7 +19,7 @@ export const Table: React.FC<TableProps> = ({ tableTitle, headerCells, data, has
                 <TableHeader headerCells={headerCells} />
                 <tbody>
                     {data.map((item) => (
-                        <TableRow item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
+                        <TableRow key={item.id} item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
                     ))}
                 </tbody>
             </table>

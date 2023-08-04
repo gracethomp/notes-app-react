@@ -18,11 +18,26 @@ interface TableRowProps {
 export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchivedNotes }) => {
     const dispatch = useDispatch();
 
-    const [isEditModalVisible, setEditModalVisible] = useState<boolean>(false);
-    const [isArchiveModalVisible, setArchiveModalVisible] = useState<boolean>(false);
-    const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
+    const [isModalVisible, setModalVisible] = useState<boolean>(false);
+    const [actionType, setActionType] = useState<string>("");
 
-    const handleArchiveClick = (note: Note) => {
+    const handleActionButtonClick = (currentAction: string) => {
+        setModalVisible(true);
+        setActionType(currentAction);
+    }
+
+    const chooseAction = (currentAction: string) => {
+        const lowerCaseAction = currentAction.toLowerCase();
+        if (lowerCaseAction === "archive" || lowerCaseAction === "unarchive") {
+            return (note: Note) => handleArchiveNote(note);
+        } else if (lowerCaseAction === "edit") {
+            return (note: Note) => handleEditNote(note);
+        } else {
+            return (note: Note) => handleDeleteNote(note);
+        }
+    }
+
+    const handleArchiveNote = (note: Note) => {
         if (showArchivedNotes) {
             dispatch(unarchiveNote(note));
             dispatch(incrementActive(note.category));
@@ -34,7 +49,7 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
         }
     }
 
-    const handleEditClick = (note: Note) => {
+    const handleEditNote = (note: Note) => {
         dispatch(editNote(note));
         if (note.category !== item.category) {
             dispatch(showArchivedNotes ? incrementArchived(note.category) : incrementActive(note.category));
@@ -42,7 +57,7 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
         }
     }
 
-    const handleDeleteClick = (note: Note) => {
+    const handleDeleteNote = (note: Note) => {
         dispatch(removeNote(note));
         dispatch(showArchivedNotes ? decrementArchived(note.category) : decrementActive(note.category));
     }
@@ -56,38 +71,18 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
                 ))}
                 {hasAction &&
                     <ActionGroup
-                        handleArchiveClick={() => setArchiveModalVisible(true)}
-                        handleEditClick={() => setEditModalVisible(true)}
-                        handleRemoveClick={() => setDeleteModalVisible(true)}
+                        handleArchiveClick={() => handleActionButtonClick(showArchivedNotes ? "Unarchive" : "Archive")}
+                        handleEditClick={() => handleActionButtonClick("Edit")}
+                        handleRemoveClick={() => handleActionButtonClick("Delete")}
                     />}
             </tr>
-            {isEditModalVisible &&
+            {isModalVisible &&
                 <Modal
                     note={item}
-                    handleModalClose={() => setEditModalVisible(false)}
-                    action={(note: Note) => handleEditClick(note)}
-                    actionType="Edit"
-                    id={item["id"]}
-                />
-            }
-            {isArchiveModalVisible &&
-                <Modal
-                    note={item}
-                    handleModalClose={() => setArchiveModalVisible(false)}
-                    action={(note: Note) => handleArchiveClick(note)}
-                    actionType="Archive"
-                    id={item["id"]}
-                />
-            }
-            {isDeleteModalVisible &&
-                <Modal
-                    note={item}
-                    handleModalClose={() => setDeleteModalVisible(false)}
-                    action={(note: Note) => handleDeleteClick(note)}
-                    actionType="Delete"
-                    id={item["id"]}
-                />
-            }
+                    handleModalClose={() => setModalVisible(false)}
+                    action={chooseAction(actionType)}
+                    actionType={actionType}
+                />}
         </>
     );
 }

@@ -3,7 +3,7 @@ import React from "react"
 interface ActionButtonProps {
     icon: string,
     alt: string,
-    onClick: () => void
+    onClick: React.MouseEventHandler<HTMLImageElement>;
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({ icon, alt, onClick }) => {

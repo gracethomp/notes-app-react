@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { Note } from "../../types/Note";
 import { AcceptButton } from "../buttons/AcceptButton";
 import { CancelButton } from "../buttons/CancelButton";
-import { setHasForm, setModalText } from '../../utils/modalSettingsUtil';
+import { setHasForm, setModalText, setModalTitle } from '../../utils/modalSettingsUtil';
 
 type ModalSettings = {
     modalTitle: string,
@@ -11,33 +11,22 @@ type ModalSettings = {
 }
 
 interface ModalProps {
-    note?: Note,
+    note: Note,
     handleModalClose: () => void,
     actionType: string,
     action: (note: Note) => void,
-    id: number
 }
 
-export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, actionType, id }) => {
+export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, actionType}) => {
     const modalSettings: ModalSettings = {
-        modalTitle: actionType + " Note",
+        modalTitle: setModalTitle(actionType),
         modalText: setModalText(actionType),
         hasForm: setHasForm(actionType)
     };
-    const [noteForm, setNoteForm] = useState<Note>(note ? note :
-        {
-            id: id,
-            name: '',
-            timeOfCreation: '',
-            category: 'Task',
-            noteContent: '',
-            datesMentioned: '',
-            isArchived: false,
-        }
-    );
+    const [noteForm, setNoteForm] = useState<Note>(note);
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
 
-    
+
 
     const performAction = () => {
         if (modalSettings.hasForm && (noteForm.name === '' || noteForm.noteContent === '')) {
@@ -61,7 +50,6 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     }
 
 
-
     return (
         <div className="modal" id="myModal">
             <div className="modal-content">
@@ -77,7 +65,8 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
                                 <option value="Idea">Idea</option>
                             </select>
                             <textarea className="form-control" placeholder="Content" value={noteForm?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
-                        </>}
+                        </>
+                    }
                     {isWarnVisible &&
                         <p>Fill all fields!</p>
                     }

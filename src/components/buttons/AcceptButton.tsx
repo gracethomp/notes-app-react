@@ -2,7 +2,7 @@ import React from 'react';
 
 interface AcceptButtonProps {
     text: string;
-    onClick: () => void;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const AcceptButton: React.FC<AcceptButtonProps> = ({ text, onClick }) => {
