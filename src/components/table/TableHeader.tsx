@@ -11,6 +11,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ headerCells }) => {
             <tr className="table-dark">
                 {headerCells.map((column) =>
                     <TableHeaderCell text={column} />
+
                 )}
             </tr>
         </thead>

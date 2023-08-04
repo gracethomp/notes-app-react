@@ -88,3 +88,4 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
         </>
     );
 }
+
