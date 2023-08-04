@@ -35,16 +35,14 @@ export const MainPage : React.FC = () => {
             <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} showArchivedNotes={showArchivedNotes} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
-                <Modal modalTitle="Add Note"
-                    modalText="Fill all fields to create new note"
-                    acceptButtonText="Create"
-                    hasForm={true}
+                <Modal
                     handleModalClose={() => setModalVisible(false)}
                     action={(note: Note) => {
                         dispatch(addNote(note));
                         dispatch(incrementActive(note.category));
                         setId(id + 1);
                     }}
+                    actionType="Add"
                     id={id}
                 />
             }

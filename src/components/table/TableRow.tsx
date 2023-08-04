@@ -62,35 +62,29 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
                     />}
             </tr>
             {isEditModalVisible &&
-                <Modal modalTitle="Edit Node"
-                    modalText="Edit this node"
-                    acceptButtonText="Accept changes"
-                    hasForm={true}
+                <Modal
                     note={item}
                     handleModalClose={() => setEditModalVisible(false)}
                     action={(note: Note) => handleEditClick(note)}
+                    actionType="Edit"
                     id={item["id"]}
                 />
             }
             {isArchiveModalVisible &&
-                <Modal modalTitle={(showArchivedNotes ? "Unarchive" : "Archive") + " Node"}
-                    modalText={"Are you sure you want to " + (showArchivedNotes ? "unarchive" : "archive") + " this node?"}
-                    acceptButtonText="Yes"
-                    hasForm={false}
+                <Modal
                     note={item}
                     handleModalClose={() => setArchiveModalVisible(false)}
                     action={(note: Note) => handleArchiveClick(note)}
+                    actionType="Archive"
                     id={item["id"]}
                 />
             }
             {isDeleteModalVisible &&
-                <Modal modalTitle="Delete Note"
-                    modalText={"Are you sure you want to delete this node?"}
-                    acceptButtonText="Yes"
-                    hasForm={false}
+                <Modal
                     note={item}
                     handleModalClose={() => setDeleteModalVisible(false)}
                     action={(note: Note) => handleDeleteClick(note)}
+                    actionType="Delete"
                     id={item["id"]}
                 />
             }

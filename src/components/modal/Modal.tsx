@@ -2,19 +2,28 @@ import React, { ChangeEvent, useState } from 'react';
 import { Note } from "../../types/Note";
 import { AcceptButton } from "../buttons/AcceptButton";
 import { CancelButton } from "../buttons/CancelButton";
+import { setHasForm, setModalText } from '../../utils/modalSettingsUtil';
 
-interface ModalProps {
+type ModalSettings = {
     modalTitle: string,
     modalText: string,
-    acceptButtonText: string,
-    note?: Note,
     hasForm: boolean,
+}
+
+interface ModalProps {
+    note?: Note,
     handleModalClose: () => void,
+    actionType: string,
     action: (note: Note) => void,
     id: number
 }
 
-export const Modal: React.FC<ModalProps> = ({ modalTitle, modalText, acceptButtonText, note, hasForm, handleModalClose, action, id }) => {
+export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, actionType, id }) => {
+    const modalSettings: ModalSettings = {
+        modalTitle: actionType + " Note",
+        modalText: setModalText(actionType),
+        hasForm: setHasForm(actionType)
+    };
     const [noteForm, setNoteForm] = useState<Note>(note ? note :
         {
             id: id,
@@ -28,8 +37,10 @@ export const Modal: React.FC<ModalProps> = ({ modalTitle, modalText, acceptButto
     );
     const [isWarnVisible, setIsWarnVisible] = useState<boolean>(false);
 
+    
+
     const performAction = () => {
-        if (hasForm && (noteForm.name === '' || noteForm.noteContent === '')) {
+        if (modalSettings.hasForm && (noteForm.name === '' || noteForm.noteContent === '')) {
             setIsWarnVisible(true);
         } else {
             action(noteForm);
@@ -49,13 +60,15 @@ export const Modal: React.FC<ModalProps> = ({ modalTitle, modalText, acceptButto
         setNoteForm({ ...noteForm, noteContent: e.target.value });
     }
 
+
+
     return (
         <div className="modal" id="myModal">
             <div className="modal-content">
-                <h3 id="modalTitle">{modalTitle}</h3>
+                <h3 id="modalTitle">{modalSettings.modalTitle}</h3>
                 <div id="modalContent">
-                    <p>{modalText}</p>
-                    {hasForm &&
+                    <p>{modalSettings.modalText}</p>
+                    {modalSettings.hasForm &&
                         <>
                             <input type="text" placeholder="Note Name" value={noteForm?.name} className="form-control" onChange={handleInputNameChange} />
                             <select className="form-select" aria-label="Default select example" onChange={handleCategorySelectChange} value={noteForm?.category}>
@@ -70,7 +83,7 @@ export const Modal: React.FC<ModalProps> = ({ modalTitle, modalText, acceptButto
                     }
                 </div>
                 <div className="modal-actions">
-                    <AcceptButton onClick={() => performAction()} text={acceptButtonText} />
+                    <AcceptButton onClick={() => performAction()} text="Accept" />
                     <CancelButton onClick={() => handleModalClose()} />
                 </div>
             </div>
