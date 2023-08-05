@@ -42,9 +42,9 @@ export const MainPage: React.FC = () => {
     const categories = useSelector((state: RootState) => state.categories);
 
     const handleAddNote = (note: Note) => {
-        dispatch(addNote({...note, timeOfCreation: getCurrentTime()}));
+        dispatch(addNote({ ...note, timeOfCreation: getCurrentTime() }));
         dispatch(incrementActive(note.category));
-        setNewNote({ ...newNote, id: newNote.id + 1});
+        setNewNote({ ...newNote, id: newNote.id + 1 });
     }
 
     return (
