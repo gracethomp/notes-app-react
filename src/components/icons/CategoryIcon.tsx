@@ -22,7 +22,7 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
     }
 
     return (
-        <span className='category-icon'>
+        <span>
             <img src={setIcon()} alt={category + " icon"} />
         </span>
     );

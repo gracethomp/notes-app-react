@@ -33,7 +33,7 @@ export const MainPage: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", <ActionButton icon={addIcon} alt={"add"} onClick={() => setModalVisible(true)} />, ""];
+    const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", "", ""];
     const notes = useSelector((state: RootState) => state.notes);
 
     const notesToDisplay = useMemo(() => notes.filter((note) => note.isArchived === showArchivedNotes), [notes, showArchivedNotes]);
@@ -50,7 +50,8 @@ export const MainPage: React.FC = () => {
     return (
         <>
             <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} />
-            <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} showArchivedNotes={showArchivedNotes} />
+            <Table tableTitle={!showArchivedNotes ? "My Notes" : "Archive"} headerCells={notesHeaderCells} data={notesToDisplay}
+                hasActions={true} showArchivedNotes={showArchivedNotes} handleAddClick={() => setModalVisible(true)} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
                 <Modal note={newNote}
