@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Note } from "../../types/Note";
-import { AcceptButton } from "../buttons/AcceptButton";
+import { ClassicButton } from "../buttons/ClassicButton";
 import { CancelButton } from "../buttons/CancelButton";
 import { setHasForm, setModalText, setModalTitle } from '../../utils/modalSettingsUtil';
 import Form from './Form';
@@ -63,7 +63,7 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
                     }
                 </div>
                 <div className="mt-4 flex justify-content-between">
-                    <AcceptButton onClick={() => performAction()} text="Accept" />
+                    <ClassicButton onClick={() => performAction()} text="Accept" />
                     <CancelButton onClick={() => handleModalClose()} />
                 </div>
             </div>

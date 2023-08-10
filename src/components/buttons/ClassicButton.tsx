@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface AcceptButtonProps {
+interface ClassicButtonProps {
     text: string;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const AcceptButton: React.FC<AcceptButtonProps> = ({ text, onClick }) => {
+export const ClassicButton: React.FC<ClassicButtonProps> = ({ text, onClick }) => {
     return (
         <button
             type="button"
