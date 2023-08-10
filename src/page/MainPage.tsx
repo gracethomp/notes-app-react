@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table } from "../components/table/Table";
 import { Note } from "../types/Note";
 import addIcon from "../assets/addNote.svg"
-import Header from "../layout/Header";
+import { Header } from "../layout/Header";
 import { Category } from "../types/Category";
 import { Modal } from "../components/modal/Modal";
 import { addNote } from "../redux/actions/notesActions";
@@ -49,8 +49,7 @@ export const MainPage: React.FC = () => {
 
     return (
         <>
-            <Header />
-            {/* <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} /> */}
+            <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} />
             <Table tableTitle="My Notes" headerCells={notesHeaderCells} data={notesToDisplay} hasActions={true} showArchivedNotes={showArchivedNotes} />
             <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
             {isModalVisible &&
