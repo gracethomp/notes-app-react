@@ -4,10 +4,7 @@ import { CategoryIcon } from "../icons/CategoryIcon";
 import { ActionGroup } from "../buttons/ActionsGroup";
 import { TableCell } from "./TableCell";
 import { Modal } from "../modal/Modal";
-import { useDispatch } from "react-redux";
 import { Note } from "../../types/Note";
-import { archiveNote, editNote, removeNote, unarchiveNote } from "../../redux/actions/notesActions";
-import { decrementActive, decrementArchived, incrementActive, incrementArchived } from "../../redux/actions/categoryActions";
 import { useNoteActions } from "../../hooks/notesActionHook";
 
 interface TableRowProps<T> {
@@ -17,8 +14,6 @@ interface TableRowProps<T> {
 }
 
 export const TableRow = <T extends Record<string, any>>({ item, hasAction, showArchivedNotes }: TableRowProps<T>) => {
-    const dispatch = useDispatch();
-
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
     const [actionType, setActionType] = useState<string>("");
 
@@ -41,8 +36,6 @@ export const TableRow = <T extends Record<string, any>>({ item, hasAction, showA
             return (note: Note) => handleDeleteNote(note, showArchivedNotes);
         }
     }
-
-    
 
     return (
         <>

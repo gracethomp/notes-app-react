@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, Fragment } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Note } from "../../types/Note";
 import { AcceptButton } from "../buttons/AcceptButton";
 import { CancelButton } from "../buttons/CancelButton";
