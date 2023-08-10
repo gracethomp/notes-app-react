@@ -8,11 +8,12 @@ import { useDispatch } from "react-redux";
 import { Note } from "../../types/Note";
 import { archiveNote, editNote, removeNote, unarchiveNote } from "../../redux/actions/notesActions";
 import { decrementActive, decrementArchived, incrementActive, incrementArchived } from "../../redux/actions/categoryActions";
+import { useNoteActions } from "../../hooks/notesActionHook";
 
 interface TableRowProps<T> {
     item: T,
     hasAction: boolean,
-    showArchivedNotes?: boolean
+    showArchivedNotes: boolean
 }
 
 export const TableRow = <T extends Record<string, any>>({ item, hasAction, showArchivedNotes }: TableRowProps<T>) => {
@@ -20,6 +21,8 @@ export const TableRow = <T extends Record<string, any>>({ item, hasAction, showA
 
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
     const [actionType, setActionType] = useState<string>("");
+
+    const { handleUnarchiveNote, handleArchiveNote, handleEditNote, handleDeleteNote } = useNoteActions();
 
     const handleActionButtonClick = (currentAction: string) => {
         setModalVisible(true);
@@ -33,36 +36,13 @@ export const TableRow = <T extends Record<string, any>>({ item, hasAction, showA
         } else if (lowerCaseAction === "archive") {
             return (note: Note) => handleArchiveNote(note);
         } else if (lowerCaseAction === "edit") {
-            return (note: Note) => handleEditNote(note);
+            return (note: Note) => handleEditNote(note, showArchivedNotes, item.category);
         } else {
-            return (note: Note) => handleDeleteNote(note);
+            return (note: Note) => handleDeleteNote(note, showArchivedNotes);
         }
     }
 
-    const handleUnarchiveNote = (note: Note) => {
-        dispatch(unarchiveNote(note));
-        dispatch(incrementActive(note.category));
-        dispatch(decrementArchived(note.category));
-    }
-
-    const handleArchiveNote = (note: Note) => {
-        dispatch(archiveNote(note));
-        dispatch(incrementArchived(note.category));
-        dispatch(decrementActive(note.category));
-    }
-
-    const handleEditNote = (note: Note) => {
-        dispatch(editNote(note));
-        if (note.category !== item.category) {
-            dispatch(showArchivedNotes ? incrementArchived(note.category) : incrementActive(note.category));
-            dispatch(showArchivedNotes ? decrementArchived(item.category) : decrementActive(item.category));
-        }
-    }
-
-    const handleDeleteNote = (note: Note) => {
-        dispatch(removeNote(note));
-        dispatch(showArchivedNotes ? decrementArchived(note.category) : decrementActive(note.category));
-    }
+    
 
     return (
         <>

@@ -1,15 +1,11 @@
 import React, { useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Table } from "../components/table/Table";
 import { Note } from "../types/Note";
-import addIcon from "../assets/addNote.svg"
 import { Header } from "../layout/Header";
 import { Category } from "../types/Category";
 import { Modal } from "../components/modal/Modal";
-import { addNote } from "../redux/actions/notesActions";
-import { incrementActive } from "../redux/actions/categoryActions";
-import { ActionButton } from "../components/buttons/ActionButton";
-import { getCurrentTime } from "../utils/dateUtil";
+import { useNoteActions } from "../hooks/notesActionHook";
 
 interface RootState {
     notes: Note[],
@@ -30,8 +26,8 @@ export const MainPage: React.FC = () => {
     const [newNote, setNewNote] = useState<Note>(initialNote);
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
     const [showArchivedNotes, setShowArchivedNotes] = useState<boolean>(false);
-
-    const dispatch = useDispatch();
+    
+    const { incrementActiveAndAddNote } = useNoteActions();
 
     const notesHeaderCells: any[] = ["", "Name", "Created", "Category", "Content", "Dates", "", "", ""];
     const notes = useSelector((state: RootState) => state.notes);
@@ -42,8 +38,7 @@ export const MainPage: React.FC = () => {
     const categories = useSelector((state: RootState) => state.categories);
 
     const handleAddNote = (note: Note) => {
-        dispatch(addNote({ ...note, timeOfCreation: getCurrentTime() }));
-        dispatch(incrementActive(note.category));
+        incrementActiveAndAddNote(note, note.category);
         setNewNote({ ...newNote, id: newNote.id + 1 });
     }
 
@@ -52,7 +47,7 @@ export const MainPage: React.FC = () => {
             <Header onNoteListClick={() => setShowArchivedNotes(false)} onArchiveClick={() => setShowArchivedNotes(true)} />
             <Table tableTitle={!showArchivedNotes ? "My Notes" : "Archive"} headerCells={notesHeaderCells} data={notesToDisplay}
                 hasActions={true} showArchivedNotes={showArchivedNotes} handleAddClick={() => setModalVisible(true)} />
-            <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} />
+            <Table tableTitle="Summary" headerCells={categoryHeaderCells} data={categories} hasActions={false} showArchivedNotes/>
             {isModalVisible &&
                 <Modal note={newNote}
                     handleModalClose={() => setModalVisible(false)}

@@ -1,5 +1,6 @@
 import { Note } from '../../types/Note';
 import { getDatesFromString } from '../../utils/dateUtil';
+import { incrementActive } from '../actions/categoryActions';
 import { ADD_NOTE, EDIT_NOTE, REMOVE_NOTE, ARCHIVE_NOTE, UNARCHIVE_NOTE } from "../actions/types";
 
 
@@ -74,6 +75,7 @@ const initialState: Note[] = [
 const notesReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_NOTE:
+            incrementActive(action.payload.category);
             return [...state, {...action.payload, datesMentioned: getDatesFromString(action.payload.noteContent)}];
         case EDIT_NOTE:
             return state.map((note) => (note.id === action.payload.id ? {...action.payload, datesMentioned: getDatesFromString(action.payload.noteContent)} : note));

@@ -9,7 +9,7 @@ interface TableProps<T> {
     headerCells: string[],
     data: T[],
     hasActions: boolean,
-    showArchivedNotes?: boolean,
+    showArchivedNotes: boolean,
     handleAddClick?: () => void
 }
 export const Table = <T extends Record<string, any>>({ data, headerCells, hasActions, showArchivedNotes, tableTitle, handleAddClick }: TableProps<T>) => {

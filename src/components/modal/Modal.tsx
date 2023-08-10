@@ -3,6 +3,7 @@ import { Note } from "../../types/Note";
 import { AcceptButton } from "../buttons/AcceptButton";
 import { CancelButton } from "../buttons/CancelButton";
 import { setHasForm, setModalText, setModalTitle } from '../../utils/modalSettingsUtil';
+import Form from './Form';
 
 
 type ModalSettings = {
@@ -55,32 +56,7 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
                 <div id="modalContent">
                     <p>{modalSettings.modalText}</p>
                     {modalSettings.hasForm &&
-                        <>
-                            <div>
-                                <div className="relative mt-2 rounded-md shadow-sm">
-                                    <input
-                                        type="text"
-                                        placeholder="Note Name"
-                                        name="price"
-                                        id="price"
-                                        value={noteForm?.name}
-                                        className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        onChange={handleInputNameChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className='relative mt-2 rounded-md shadow-sm'>
-                                <select className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" aria-label="Default select" onChange={handleCategorySelectChange} value={noteForm?.category}>
-                                    <option value="Task">Task</option>
-                                    <option value="Random Thought">Random Thought</option>
-                                    <option value="Idea">Idea</option>
-                                </select>
-                            </div>
-
-                            <div className="relative mt-2 rounded-md shadow-sm">
-                                <textarea className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 resize-none" placeholder="Content" value={noteForm?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
-                            </div>
-                        </>
+                        <Form note={noteForm} handleNameChange={handleInputNameChange} handleCategoryChange={handleCategorySelectChange} handleContentChange={handleContentTextareaChange} />
                     }
                     {isWarnVisible &&
                         <p className='text-red-500'>Fill all fields!</p>
