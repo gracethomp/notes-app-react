@@ -21,7 +21,7 @@ export const Table = <T extends Record<string, any>>({ data, headerCells, hasAct
                     <TableHeader headerCells={headerCells} />
                     <tbody className="bg-white divide-y divide-gray-200">
                         {data.map((item) => (
-                            <TableRow item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
+                            <TableRow key={item.id} item={item} hasAction={hasActions} showArchivedNotes={showArchivedNotes} />
                         ))}
                     </tbody>
                 </table>

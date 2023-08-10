@@ -66,10 +66,10 @@ export const TableRow = <T extends Record<string, any>>({ item, hasAction, showA
 
     return (
         <>
-            <tr key={item.id}>
+            <tr>
                 {item.category && <TableCell content={<CategoryIcon category={item.category} />} />}
-                {Object.keys(item).map((key) => (
-                    (key !== "id" && key !== "isArchived") && <TableCell content={item[key]} />
+                {Object.keys(item).map((key, index) => (
+                    (key !== "id" && key !== "isArchived") && <TableCell key={index} content={item[key]} />
                 ))}
                 {hasAction &&
                     <ActionGroup

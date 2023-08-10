@@ -8,9 +8,8 @@ interface TableCellProps {
 
 export const TableCell: React.FC<TableCellProps> = ({ content }) => {
     return (
-        <td className='px-6 py-4 whitespace-nowrap'>{typeof content === 'string' ? (
-            <p>{content}</p>) :
-            (content)}
+        <td className='px-6 py-4 whitespace-nowrap'>
+            {<p>{content}</p>}
         </td>
     )
 }

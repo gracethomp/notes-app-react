@@ -8,6 +8,6 @@ interface ActionButtonProps {
 
 export const ActionButton: React.FC<ActionButtonProps> = ({ icon, alt, onClick }) => {
     return (
-        <img src={icon} alt={alt + " note icon"} className="action" onClick={onClick} />
+        <img src={icon} alt={alt + " note icon"} className="cursor-pointer" onClick={onClick} />
     );
 }

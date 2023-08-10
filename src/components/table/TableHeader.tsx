@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TableHeaderCell } from "./TableHeaderCell";
 
 interface TableHeaderProps {
@@ -9,8 +9,8 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ headerCells }) => {
     return (
         <thead className="bg-gray-50">
             <tr>
-                {headerCells.map((column) =>
-                    <TableHeaderCell text={column} />
+                {headerCells.map((column, index) =>
+                    <TableHeaderCell key={index} text={column} />
                 )}
             </tr>
         </thead>

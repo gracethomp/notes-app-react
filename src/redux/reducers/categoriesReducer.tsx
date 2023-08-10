@@ -3,16 +3,19 @@ import { DECREMENT_ACTIVE, DECREMENT_ARCHIVED, INCREMENT_ACTIVE, INCREMENT_ARCHI
 
 const initialState: Category[] = [
     {
+        id: 1,
         category: "Task",
         active: 3,
         archived: 0,
     },
     {
+        id: 2,
         category: "Random Thought",
         active: 1,
         archived: 1,
     },
     {
+        id: 3,
         category: "Idea",
         active: 2,
         archived: 0,

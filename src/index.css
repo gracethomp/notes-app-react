@@ -2,25 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-h2 {
-    margin: 1rem 2rem;
-}
-thead>tr.table-dark {
-    background-color: #212529;
-}
-
-svg {
-    display: inline;
-}
-
-.action, .nav-link {
-    cursor: pointer;
-}
-
-.category-icon-img {
-    cursor: initial;
-}
-
 .modal {
     display: block;
     position: fixed;
@@ -44,20 +25,8 @@ svg {
     width: 300px;
 }
 
-.modal h2 {
-    margin-top: 0;
-}
-
 .modal-actions {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-}
-
-textarea {
-    resize: none;
-}
-
-.form-select {
-    margin: 20px 0;
 }

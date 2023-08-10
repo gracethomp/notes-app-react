@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: [
-    "./src/components/Modal.tsx",
+    "./src/components/modal/Modal.tsx",
     "./src/components/table/Table.tsx",
     "./src/layout/Header.tsx",
     "./src/components/table/TableTitle.tsx",
