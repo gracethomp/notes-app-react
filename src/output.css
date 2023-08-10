@@ -604,6 +604,10 @@ video {
   visibility: collapse;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -728,6 +732,10 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -742,6 +750,10 @@ video {
 
 .flow-root {
   display: flow-root;
+}
+
+.grid {
+  display: grid;
 }
 
 .contents {
