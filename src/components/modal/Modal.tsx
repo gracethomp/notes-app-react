@@ -3,7 +3,7 @@ import { Note } from "../../types/Note";
 import { ClassicButton } from "../buttons/ClassicButton";
 import { CancelButton } from "../buttons/CancelButton";
 import { setHasForm, setModalText, setModalTitle } from '../../utils/modalSettingsUtil';
-import Form from './Form';
+import {Form} from './Form';
 
 
 type ModalSettings = {

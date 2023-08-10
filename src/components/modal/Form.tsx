@@ -8,7 +8,7 @@ interface FormProps {
     handleContentChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export default function Form({ note, handleNameChange, handleCategoryChange, handleContentChange }: FormProps) {
+export const Form : React.FC<FormProps> = ({ note, handleNameChange, handleCategoryChange, handleContentChange }) =>  {
     return (<>
         <div>
             <div className="relative mt-2 rounded-md shadow-sm">
