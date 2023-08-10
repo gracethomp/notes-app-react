@@ -1,5 +1,5 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { AcceptButton } from "../buttons/AcceptButton";
+import { ClassicButton } from "../buttons/ClassicButton";
 
 interface TableTitleProps {
     tableTitle: string,
@@ -15,7 +15,7 @@ export const TableTitle = ({ tableTitle, hasAction, handleAddClick }: TableTitle
             </div>
             {hasAction && handleAddClick && <div className="m-2 flex lg:ml-4 lg:mt-0">
                 <span className="sm:ml-3">
-                    <AcceptButton text={"Add new note"} onClick={() => handleAddClick()}/>
+                    <ClassicButton text={"Add new note"} onClick={() => handleAddClick()}/>
                 </span>
             </div>}
         </div>)
