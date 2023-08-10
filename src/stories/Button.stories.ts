@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
   title: 'Example/Button',
   component: Button,
@@ -47,4 +46,13 @@ export const Small: Story = {
     size: 'small',
     label: 'Button',
   },
+};
+
+
+export const Warning: Story = {
+  args: {
+    primary: true,
+    label: 'Delete now',
+    backgroundColor: 'red',
+  }
 };
