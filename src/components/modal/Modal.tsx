@@ -48,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     }
 
     return (
-        <div className="modal bg-blue" id="myModal">
+        <div className="modal" id="myModal">
             <div className="modal-content">
                 <h3 id="modalTitle">{modalSettings.modalTitle}</h3>
                 <div id="modalContent">

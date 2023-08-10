@@ -9,13 +9,13 @@ import { Note } from "../../types/Note";
 import { archiveNote, editNote, removeNote, unarchiveNote } from "../../redux/actions/notesActions";
 import { decrementActive, decrementArchived, incrementActive, incrementArchived } from "../../redux/actions/categoryActions";
 
-interface TableRowProps {
-    item: any,
+interface TableRowProps<T> {
+    item: T,
     hasAction: boolean,
     showArchivedNotes?: boolean
 }
 
-export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchivedNotes }) => {
+export const TableRow = <T extends Record<string, any>>({ item, hasAction, showArchivedNotes }: TableRowProps<T>) => {
     const dispatch = useDispatch();
 
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
@@ -80,7 +80,7 @@ export const TableRow: React.FC<TableRowProps> = ({ item, hasAction, showArchive
             </tr>
             {isModalVisible &&
                 <Modal
-                    note={item}
+                    note={item as unknown as Note}
                     handleModalClose={() => setModalVisible(false)}
                     action={chooseAction(actionType)}
                     actionType={actionType}

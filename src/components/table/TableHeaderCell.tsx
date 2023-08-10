@@ -6,6 +6,8 @@ interface TableHeaderCellProps {
 
 export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({ text }) => {
     return (
-        <th scope="col">{text}</th>
+        <th className="px-12 py-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            {text}
+        </th>
     )
 }

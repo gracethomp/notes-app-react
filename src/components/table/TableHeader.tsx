@@ -7,8 +7,8 @@ interface TableHeaderProps {
 
 export const TableHeader: React.FC<TableHeaderProps> = ({ headerCells }) => {
     return (
-        <thead>
-            <tr className="table-dark">
+        <thead className="bg-gray-50">
+            <tr>
                 {headerCells.map((column) =>
                     <TableHeaderCell text={column} />
                 )}
