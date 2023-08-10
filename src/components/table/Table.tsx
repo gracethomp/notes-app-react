@@ -14,7 +14,7 @@ interface TableProps {
 export const Table: React.FC<TableProps> = ({ tableTitle, headerCells, data, hasActions, showArchivedNotes }) => {
     return (
         <div className="table-section">
-            <h2>{tableTitle}</h2>
+            <h2 className="text-3xl font-bold underline">{tableTitle}</h2>
             <table className="table">
                 <TableHeader headerCells={headerCells} />
                 <tbody>
