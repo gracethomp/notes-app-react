@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { CategoryIcon } from "../icons/CategoryIcon";
 import { ActionGroup } from "../buttons/ActionsGroup";
