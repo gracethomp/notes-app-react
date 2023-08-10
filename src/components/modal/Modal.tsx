@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, Fragment } from 'react';
 import { Note } from "../../types/Note";
 import { AcceptButton } from "../buttons/AcceptButton";
 import { CancelButton } from "../buttons/CancelButton";
 import { setHasForm, setModalText, setModalTitle } from '../../utils/modalSettingsUtil';
+
 
 type ModalSettings = {
     modalTitle: string,
@@ -48,20 +49,37 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     }
 
     return (
-        <div className="modal" id="myModal">
-            <div className="modal-content">
-                <h3 id="modalTitle">{modalSettings.modalTitle}</h3>
+        <div className="modal fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500" id="myModal">
+            <div className="modal-content bg-white rounded shadow-lg p-6 w-96">
+                <h3 id="modalTitle" className="text-lg font-semibold mb-2">{modalSettings.modalTitle}</h3>
                 <div id="modalContent">
                     <p>{modalSettings.modalText}</p>
                     {modalSettings.hasForm &&
                         <>
-                            <input type="text" placeholder="Note Name" value={noteForm?.name} className="form-control" onChange={handleInputNameChange} />
-                            <select className="form-select" aria-label="Default select example" onChange={handleCategorySelectChange} value={noteForm?.category}>
-                                <option value="Task">Task</option>
-                                <option value="Random Thought">Random Thought</option>
-                                <option value="Idea">Idea</option>
-                            </select>
-                            <textarea className="form-control" placeholder="Content" value={noteForm?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
+                            <div>
+                                <div className="relative mt-2 rounded-md shadow-sm">
+                                    <input
+                                        type="text"
+                                        placeholder="Note Name"
+                                        name="price"
+                                        id="price"
+                                        value={noteForm?.name}
+                                        className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        onChange={handleInputNameChange}
+                                    />
+                                </div>
+                            </div>
+                            <div className='relative mt-2 rounded-md shadow-sm'>
+                                <select className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" aria-label="Default select" onChange={handleCategorySelectChange} value={noteForm?.category}>
+                                    <option value="Task">Task</option>
+                                    <option value="Random Thought">Random Thought</option>
+                                    <option value="Idea">Idea</option>
+                                </select>
+                            </div>
+
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <textarea className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Content" value={noteForm?.noteContent} onChange={handleContentTextareaChange}>{note?.noteContent}</textarea>
+                            </div>
                         </>
                     }
                     {isWarnVisible &&
