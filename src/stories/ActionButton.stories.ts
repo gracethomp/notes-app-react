@@ -7,7 +7,7 @@ import trash from '../assets/trash.svg'
 import "../output.css";
 
 const meta = {
-  title: "Example/ActionButton",
+  title: "Notes/ActionButton",
   component: ActionButton,
   parameters: {
     layout: "centered",

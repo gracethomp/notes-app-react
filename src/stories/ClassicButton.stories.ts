@@ -4,7 +4,7 @@ import { ClassicButton } from "../components/buttons/ClassicButton";
 import "../output.css";
 
 const meta = {
-  title: "Example/ClassicButton",
+  title: "Notes/ClassicButton",
   component: ClassicButton,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
