@@ -9,6 +9,7 @@ module.exports = {
     "./src/components/table/TableHeaderCell.tsx",
     "./src/components/table/TableRow.tsx",
     "./src/components/table/TableCell.tsx",
+    "./src/components/buttons/ActionButton.tsx"
   ],
   content: [],
   theme: {

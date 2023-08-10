@@ -49,8 +49,8 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
     }
 
     return (
-        <div className="modal fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500" id="myModal">
-            <div className="modal-content bg-white rounded shadow-lg p-6 w-96">
+        <div className="modal fixed flex justify-content-center align-items-center inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500" id="myModal">
+            <div className="p-3 bg-white rounded shadow-lg p-6 w-96 position-absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <h3 id="modalTitle" className="text-lg font-semibold mb-2">{modalSettings.modalTitle}</h3>
                 <div id="modalContent">
                     <p>{modalSettings.modalText}</p>
@@ -86,7 +86,7 @@ export const Modal: React.FC<ModalProps> = ({ note, handleModalClose, action, ac
                         <p className='text-red-500'>Fill all fields!</p>
                     }
                 </div>
-                <div className="modal-actions">
+                <div className="mt-4 flex justify-content-between">
                     <AcceptButton onClick={() => performAction()} text="Accept" />
                     <CancelButton onClick={() => handleModalClose()} />
                 </div>
